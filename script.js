@@ -34,11 +34,13 @@ function addBookToLibrary(title, author, year, genre, description, imageUrl) {
   bookDisplay.appendChild(book)
 
   myLibrary.push(new Book(id, title, author, year, genre, description, imageUrl))
+  updateBookCount();
   console.log(myLibrary)
 }
 
 const bookForm = document.querySelector('.bookForm')
 const addBook = document.querySelector(".addBook")
+const numberOfBooks = document.querySelector('.numberOfBooks');
 
 addBook.addEventListener('click', function () {
   const modalDiv = document.querySelector('.modal.hidden')
@@ -96,6 +98,7 @@ bookDisplay.addEventListener('click', function (e) {
       myLibrary.splice(index, 1);
     }
     book.remove();
+    updateBookCount();
   }
 });
 
@@ -204,4 +207,9 @@ function loadDefaultBooks() {
   });
 }
 
+function updateBookCount() {
+  numberOfBooks.textContent = myLibrary.length;
+}
+
 loadDefaultBooks()
+updateBookCount();
